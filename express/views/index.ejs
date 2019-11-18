@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gracias Technologies</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="stylesheet" href="css/loader.css">
+</head>
+<body>
+	<div class="container">
+		<div class="infos">
+			<h1>BoopySoftware Inc.</h1>
+		</div>
+		<div class="progress-bar">
+			<div class="progress-bar-filler" id="progress"></div>
+		</div>
+		<div class="Text">
+			<p><span id="file"></span>Loading ...</p>
+			<h4 id="progress-percent"></h4>
+		</div>
+		
+	</div>
+	<script >
+		var e = document.querySelector("#progress");
+		var percent = document.querySelector("#progress-percent");
+		var width = 0;
+		var id = setInterval(frame,160);
+		function frame(){
+			if(width >= 100){
+				clearInterval(id)
+			}else{
+				
+				const file = document.getElementById('file')
+				let i;
+				let files = [
+					        'Recrutement','Dashboad','Settings','Payment & Salary','leave management','salary management','Recrutement','Dashboad','Settings','Payment & Salary','leave management','salary management',
+				           
+			                ]
+				width = width+2;
+				e.style.width = width+"%";
+				percent.innerHTML = width+"%";
+
+				//load text when loading
+				for(i=0; i<width;i++){
+					files.push(files[i])
+					for(let text in files){
+						file.innerHTML = files[i]
+					}
+				}
+				
+				if(width == 100){
+					setTimeout(()=>{
+						window.location.href="http://localhost:90/web/dashboard"
+					},100)					
+				}
+			}
+		}
+	</script>
+</body>
+</html>

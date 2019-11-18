@@ -1,0 +1,53 @@
+const mongoose = require('mongoose')
+const personaleSchema = new mongoose.Schema({
+    identity:{
+        id:String,
+        firstname:String,
+        lastname:String,
+        gender:String,
+        birthday:String,
+        nationality:String,
+        phone:Number,
+        address:String,
+        maritalState:String,
+        children:Number,
+        email:String,
+        image:String,
+        registration:String
+    },
+    departement:{
+        name:String,
+        hod:String,
+        place:String
+    },
+    contract:{
+        base:Number,
+        type:String,
+        start:String,
+        end:String,
+        hours:Number,
+        days:Number,
+        post:String,
+        timetable:String
+    },
+    profile:{
+        status:String,
+        login:{
+            username:String,
+            login:String
+        },
+        access:{
+            recruitement:String,
+            payment:String,
+            career:String,
+            personal:String,
+            activityPlanning:String,
+            personalFees:String,
+            leave:String,
+            formation:String,
+            archive:String,
+            attendance:String
+        }
+    }
+})
+module.exports = mongoose.model('candidate',personaleSchema)

@@ -1,0 +1,26 @@
+GET http://localhost:90/routes/api/members/
+
+###
+POST http://localhost:90/routes/api/members/
+Content-Type: application/json
+
+{
+    "id":"2018876869",
+    "email" :"shaklblbjira@google.mail",
+     "name":"john kjglikgkasongo",
+    "status":"active"
+}
+
+###
+PUT http://localhost:90/routes/api/members/45
+Content-Type: application/json
+
+{
+    "id":"12345",
+    "email" :"me45@gmail.com",
+     "name":"2018",
+    "status":"active"
+}
+
+###
+DELETE  http://localhost:90/routes/api/members/45

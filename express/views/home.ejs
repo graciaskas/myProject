@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gracias Technologies</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="stylesheet" href="../css/main.css" type="text/css">
+	<link rel="stylesheet" href="../css/a/csss/font-awesome.css" type="text/css">
+	<title><%= title%></title>
+</head>
+<body>
+<%- include('header') %>
+<div class="members">
+	<div class="members-form">
+			<h4>Add a member</h4>
+			<form action="routes/api/members" method="POST" class="form">
+				<div class="form-group">
+					<input class="form-control" placeholder="name" type="text" name="name">
+				</div>
+					<div class="form-group">
+					<input class="form-control" placeholder="email"  type="email" name="email">
+				</div>
+					<div class="form-group">
+					<input class="form-control" placeholder="id" type="number" name="id">
+				</div>
+					<div class="form-group">
+					<input class="btn btn-success" placeholder="name" type="submit"  value="add member">
+				</div>
+		</form>
+	</div>
+	<div class="actions">
+		<ul>
+			<li> <img src="/express/public/"> member</li>
+			<li><span class="fa fa-remove"></span> member</li>
+			<li>My profile</li>
+		</ul>
+	</div>
+</div>
+<div class="members-list">
+	<p>Members</p>
+	<table class="table table-bordered">
+		<thead>
+			<th>ID Member</th>
+			<th>Member's name</th>
+			<th>Email address</th>
+			<th>Status</th>
+		</thead>
+		<tbody>
+		<%  for (var member of members) { %>
+				<tr>
+					<td><%= member.id%></td>
+					<td><%= member.name%></td>
+					<td><%= member.email%></td>
+					<td>
+						<% if(member.status ){%>
+							<div class="image-form" style="width: 10px;height:10px;background:seagreen;margin-right:19px;"></div>
+						<%} else{%>
+							<div class="image-form" style="width: 10px;height:10px;background:darkgray;margin-right:19px;"></div>
+						<% } %>
+					</td>
+				</tr>
+				<% } %>
+		</tbody>
+	</table>
+<a class="btn btn-default" href="routes/api/members">visit api</a>
+</div>
+
+<div class="activities">
+	<div class="active_one" style="height: 119.5px;">
+		<div class="heading">
+			<div class="brand">
+				<h4>Admin Status</h4>
+			</div>
+		<!-- <div style="clear: both"></div>  -->
+			<div class="image">
+				<div class="image-form">
+					<span class="fa fa-user"></span>
+				</div>
+			</div>
+		</div>
+		<div class="body">
+			<div class="admin-status">
+				<div class="status">
+					<div class="status-text">
+						<p>Current Status</p>
+					</div>
+					<div class="status-form">
+						<div class="image-form" style="width: 10px;height:10px;background:seagreen"></div>
+					</div>
+				</div>
+				<div class="status" style="border:none;">
+					<div class="status-text">
+						<p>Employed</p>
+					</div>
+					<div class="status-form" >
+						<div class="image-form" style="width: 10px;height:10px;background:sandybrown"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="active_one" style="height: 430px;">
+		<div class="heading" style="height: 50px;background:#f1f1f1;border-top-right-radius: 10px;border-top-left-radius: 10px;">
+			<div class="brand" style="height: 50px;">
+				<h4>Messages</h4>
+			</div>
+			<div style="clear: both"></div>
+
+		<!-- {{!messages section}} -->
+		<div style="height: 280px;overflow:scroll;">
+			<div class="messages-box" style="padding: 10px;width:100%;">
+				<div class="message">
+					<div class="sender">g</div>
+					<div class="content">f</div>
+					<div style="clear: both"></div>
+				</div>
+				<div class="message">
+					<div class="sender">g</div>
+					<div class="content">f</div>
+					<div style="clear: both"></div>
+				</div>
+				<div class="message">
+					<div class="sender">g</div>
+					<div class="content">
+						<h4>Gracias kas</h4>
+						<p>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas neque consequatur consequuntur fuga pariatur harum nam. Officia, labore voluptas libero delectus quas necessitatibus, nulla nostrum beatae ut eaque nobis culpa.
+						</p>
+					</div>
+					<div style="clear: both"></div>
+				</div>
+			</div>
+		</div>
+		<!-- {{!/messages section}} -->
+
+			<!-- {{!reply section}} -->
+				<div class="reply">
+					<form method="POST" action="../routes/api/messages">
+						<input type="text" placeholder="writte ..." name="message">
+						<input type="submit" value="S">
+					</form>
+				</div>
+			<!-- {{!/reply section}} -->
+		</div>
+	</div>
+</div>
+</body>
+</html>

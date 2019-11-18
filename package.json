@@ -1,0 +1,32 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "ao",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "devStart": "nodemon express/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . Boopy --overwrite --asar --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Electron Tutorial App\"",
+    "package-linux": "electron-packager . e --overwrite --asar --platform=linux --arch=x64 --icon=assets/icons/png/icon.png --prune=true --out=release-builds"
+  },
+  "author": "kas",
+  "license": "MIT",
+  "dependencies": {
+    "assert": "^2.0.0",
+    "body-parser": "^1.19.0",
+    "ejs": "^2.7.1",
+    "electron": "^6.0.7",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "moment": "^2.24.0",
+    "mongodb": "^3.3.4",
+    "mongoose": "^5.6.11"
+  },
+  "devDependencies": {
+    "dotenv": "^8.1.0",
+    "electron-packager": "^14.0.5",
+    "nodemon": "^1.19.1"
+  }
+}

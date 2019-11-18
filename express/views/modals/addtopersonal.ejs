@@ -1,0 +1,21 @@
+<div class="modal " id="personal">
+    <div class="modashow animated-to">
+        <div class="head-data">
+            <h4>Add a candidate to a personal</h4>
+            <span class="fa fa-close close" id="close" onclick="hideElement('personal')"></span>
+        </div>
+        <div class="modalBody">
+           <form action="/candidate/push/personal" method="post" class="custom-form" id="form">
+               <div class="inputform">
+                   <span class="fa fa-key"></span>
+                   <input type="number" name="id"  placeholder="ID number" required>
+               </div>
+               <div class="inputform">
+                    <span class="fa fa-user"></span>
+                    <input type="text" name="first"  placeholder="First name" required>
+                </div>
+                <input type="submit"  value="register" class="submit bg-blue">
+           </form>
+        </div>
+    </div>
+</div>

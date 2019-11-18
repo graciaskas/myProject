@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gracias Technologies</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="stylesheet" href="../css/main.css" type="text/css">
+	<link rel="stylesheet" href="../css/a/csss/font-awesome.css" type="text/css">
+	<link rel="shortcut icon" href="../icons/favicon.png" type="image/x-icon">
+	<title></title>
+</head>
+<body onload="showInfo('')">
+<%- include('header.ejs') %>
+<%- include('menu') %>
+<!-- main-->
+<div class="page">
+	<div class="headPage">
+		<h4>Settings / candidates</h4>
+	</div>
+	<div class="buttons ">
+		<button class="bg-green"><span class="fa fa-plus"></span> Import file</button>
+		<button class="bg-blue" onclick="refreshpage('50')"><span class="fa fa-refresh"></span> Refresh</button>
+		<button class="bg-blue" onclick="printer('myList')"><span class="fa fa-refresh"></span> Print</button>
+		<form action="/candidate/clearList" method="post" style="display: inline-block">
+			<button class="red" type="submit"><span class="fa fa-trash-o"></span> Clear list</button>
+		</form>
+		
+	</div>
+	<div class="candidate">
+		<div class="headPage">
+			<h4>List of Current candidates</h4>
+		</div>
+		<div class="tableContent" >
+			<div style="height: 300px;overflow-y:scroll;border-bottom: 1px solid rgb(211, 221, 211)" id="myList">
+			<table class="table table-border table-hover" >
+				<thead>
+					<th>CIN</th>
+					<th>Nom</th>
+					<th>Prenom</th>
+					<th>Sexe</th>
+					<th>Bday</th>
+					<th>Nationality</th>
+					<th>Phone</th>
+					<th>Address</th>
+					<th>State</th>
+					<th>Register Date</th>
+				</thead>
+				<tbody>
+				
+					
+					
+					</tbody>
+			</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- PageLoader-->
+<div class="pageloader" id="pageloader">
+<div class="center_">
+	<h4>Loading . . .</h4>
+		<div class="loaderprocess">
+			<div class="process" id="progress2"></div>
+		</div>
+		<div class="information">
+			<p id="file"></p>
+		</div>
+	</div>
+</div>
+
+<script src="../js/main.js"></script>
+<script src="../js/loader.js"></script>
+
+</body>
+</html>

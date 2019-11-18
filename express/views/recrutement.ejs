@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gracias Technologies</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="stylesheet" href="../css/main.css" type="text/css">
+	<link rel="stylesheet" href="../css/a/csss/font-awesome.css" type="text/css">
+	<link rel="shortcut icon" href="../icons/favicon.png" type="image/x-icon">
+	<title><%= title %></title>
+</head>
+<body onload="showInfo('')">
+<%- include('header') %>
+<%- include('menu') %>
+<%- include('./modals/candidate') %>
+<%- include('./modals/addtopersonal') %>
+<%- include('./modals/personal') %>
+<!-- main-->
+<div class="page">
+	<div class="headPage">
+		<h4>Recruitement / candidates</h4>
+	</div>
+	<div class="buttons ">
+		<button class="bg-green"><span class="fa fa-plus"></span> Import file</button>
+		<button class="bg-blue" onclick="refreshpage('50')"><span class="fa fa-refresh"></span> Refresh</button>
+		<button class="bg-blue" onclick="printer('myList')"><span class="fa fa-refresh"></span> Print</button>
+		<form action="/candidate/clearList" method="post" style="display: inline-block">
+			<button class="red" type="submit"><span class="fa fa-trash-o"></span> Clear list</button>
+		</form>
+		
+	</div>
+	<div class="candidate">
+		<div class="headPage">
+			<h4>List of Current candidates</h4>
+		</div>
+		<div class="tableContent" >
+			<div style="height: 300px;overflow-y:scroll;border-bottom: 1px solid rgb(211, 221, 211)" id="myList">
+			<table class="table table-border table-hover" >
+				<thead>
+					<th>CIN</th>
+					<th>Nom</th>
+					<th>Prenom</th>
+					<th>Sexe</th>
+					<th>Bday</th>
+					<th>Nationality</th>
+					<th>Phone</th>
+					<th>Address</th>
+					<th>State</th>
+					<th>Register Date</th>
+				</thead>
+				<tbody>
+					<% for(let i of candidate){%>
+						<tr>
+								<td><%= i.identity.id%></td>
+								<td><%= i.identity.firstname%></td>
+								<td><%= i.identity.lastname%></td>
+								<td><%= i.identity.gender%></td>
+								<td><%= i.identity.birthday%></td>
+								<td><%= i.identity.nationality%></td>
+								<td><%= i.identity.phone%></td>
+								<td><%= i.identity.address%></td>
+								<td><%= i.identity.maritalState%></td>
+								<td><%= i.identity.registration%></td>
+							</tr>
+					<%}%>
+					
+					
+					</tbody>
+			</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- PageLoader-->
+<div class="pageloader" id="pageloader">
+<div class="center_">
+	<h4>Loading . . .</h4>
+		<div class="loaderprocess">
+			<div class="process" id="progress2"></div>
+		</div>
+		<div class="information">
+			<p id="file"></p>
+		</div>
+	</div>
+</div>
+
+<script src="../js/main.js"></script>
+<script src="../js/loader.js"></script>
+<script>
+
+	//user option menu
+   const user = document.getElementById('user')
+   user.addEventListener("mouseleave",()=>{
+	  setTimeout(()=>{
+		user.style.display='none'
+	  },100)
+   })
+
+   //search bar
+   const search = document.getElementById('search')
+   search.addEventListener("mouseleave",()=>{
+	setTimeout(()=>{
+		search.style.display='none'
+	  },100)
+   })
+
+   //searchData input field
+   const formSearch = document.getElementById('form')
+   const searchData = document.getElementById('searchData')
+   const result = document.getElementById('result')
+  
+
+
+   //show the search results
+   const place = document.getElementById('place')
+
+   let found = [
+		   {id:"_abfd63423sofdfn7868sn", name:"Makavelid", last:"The don", age:"56", country:"Drc" },
+		   {id:"_dbfd63443sdfxcn7868sw", name:"Great_Daniels", last:"Uldephonse", age:"51", country:"Drc"},
+		   {id:"_nbfd63203spfdfn7863bn", name:"Samvura", last:"Ruth", age:"34", country:"Ghana"},
+		   {id:"_gbfd63412sdfdfn7w6asn", name:"Alfred", last:"The don", age:"56", country:"Rwanda" },
+		   {id:"_bbfd66d43sdfdcn7868sf", name:"Thina", last:"Kasongo", age:"31", country:"Drc"},
+		   {id:"_cbfdt3223srfdfn7x68bq", name:"Sandrine", last:"Umutoni", age:"24", country:"Ghana"}  
+	   ]
+
+   	//	set the result
+	function setResult(data){
+		clearResult()
+		for(let person of data){
+			const resultData = document.createElement('div')
+			resultData.className = 'li'
+			resultData.innerHTML = `
+									<h6>${person.name}</h6>
+									<p>${person.country}</p>
+					              `
+			place.appendChild(resultData)
+		}
+		let unfound = searchData.value.trim()
+		if(data.length == 0){
+			setNoResults(unfound)
+		}
+	}
+
+	//function clearResult
+	function clearResult(){
+		while(place.firstChild){
+			place.removeChild(place.firstChild)
+		}
+	}
+
+	//No results found
+	function setNoResults(searchTerm){
+		const resultData = document.createElement('div')
+			resultData.className = 'li'
+			resultData.innerHTML = `
+									<h4>Search <a href="https://www.google.com" target="blank" class="searchable">${searchTerm}</a> in Google</h4>
+					              `
+			place.appendChild(resultData)
+	}
+   
+   //relevelancy
+   function getRelevancy(value,searchTerm){
+		if(value === searchTerm){
+			return 3
+		}else if(value.startsWith(searchTerm)){
+			return 1
+		}else if(value.includes(searchTerm)){
+			return 0
+		}else{
+			return -1
+		}
+   }
+
+  //handler the searchBar
+searchData.addEventListener("input",()=>{
+		formSearch.style.border="1px solid #007baa"
+		result.style.display = "block"
+		let inputValue = event.target.value
+		if(inputValue && inputValue.trim().length > 0){
+			inputValue = inputValue.trim().toLowerCase()
+			//set the result
+				setResult(found.filter(user => {
+					return user.name.includes(inputValue)
+				}).sort((personA,personB)=>{
+					return getRelevancy(personB.name, inputValue)-getRelevancy(personA.name,inputValue)
+				}))
+		}else{
+			clearResult()
+		}
+   })
+
+   //get the full url and check if access for setting personal is true
+   var urlParams = new URLSearchParams(window.location.search)
+   var personal  = document.getElementById('personalSettings')
+	if(urlParams.has('access')){
+		var access = urlParams.get('access')
+		switch (access){
+			case 'okay':
+				personal.style.display = "block"
+			break;
+			case 'denied':
+				personal.style.display = "none"
+			break;
+			default:
+				personal.style.display = "none"
+			break;
+
+		}
+	}else{
+		personal.style.display = "none"
+	}
+
+	//Personal info Setting cHECK form
+	const imageBtn = document.getElementById('imageBtn')
+	const downloadedFile = document.getElementById('downloadedFile')
+	let imageInput = document.getElementById('imageInput')
+
+	//display select folder when button is clicked
+	imageBtn.addEventListener("click",function(){
+		imageInput.click()
+	})
+
+	//check if file selected and is valid image
+	const extensions = ["jpg","png","jpeg","gif"]
+	function getExtension (filename){
+	  const extension_ = (/[.]/.exec(filename)) ? /[^.]+$/.exec(filename)[0] : undefined;
+		if(extensions.includes(extension_)){
+			return filename
+		}else{
+			return "/."+extension_+" files are not supported !"
+		}
+    }
+	imageInput.addEventListener("change",function(){
+		if(imageInput.value){
+			var response = getExtension(imageInput.value)
+			downloadedFile.textContent = response
+		}else{
+			downloadedFile.textContent = "No file choosen !"
+		}	
+	})
+/*********************** Handle the personnal data settings ************************************************/
+	//itemShow dataBinding
+	const container = document.getElementById('itemShow')
+
+	//Get all item link
+	const identity  = document.getElementById('identity')
+	const access    = document.getElementById('access')
+	const departement = document.getElementById('departement')
+	const profile   = document.getElementById('profile')
+
+	//event listener for buttons links
+	identity.addEventListener("click",()=>{
+		alert()
+	})
+	
+</script>
+</body>
+</html>

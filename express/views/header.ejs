@@ -1,0 +1,85 @@
+<div class="header">
+    
+<div class="loading-show" id="loadingBrand">
+        <h4>Loading ...</h4>
+    </div>
+	<div class="brand">
+		<h1 class="text-center mb-4"><%=title%></h1>
+    </div>
+    <div class="icons">
+        <div class="icon user-info">
+            <span class="fa fa-user " id="ft-18" onclick="showInfo('user')"></span>
+            <!-- user option-->
+            <div class="user-toggle" id="user">
+                <div class="head-data">
+                    <h4>Kas Gracias Tmb</h4>
+                </div>
+                <div class="body">
+                    <div class="li">
+                        <p onclick="hideElement('loadingBrand')">Load Data</p>
+                    </div>
+                    <div class="li">
+                        <p> Make update </p>
+                    </div>
+                    <div class="li">
+                        <p>Developer mode</p>
+                    </div>
+                    <div class="li">
+                        <p>Load Data</p>
+                    </div>
+                    <div class="li">
+                        <p> Make update </p>
+                    </div>
+                    <div class="li">
+                        <p>Developer mode</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="icon">
+            <span class="fa fa-wifi"></span>
+            <span class="icon-show red fa fa-remove" style="font-size: 13px;border-radius: 50%" id="connection"></span>
+            <!-- connection mesage-->
+            <div class="user-toggle animated" id="connection_" style="display: block">
+                   <h4>Connection is Lost</h4>
+                   <img src="../icons/conn.png" alt="" srcset="" width="20%">
+                   <p>Verify proxy</p>
+            </div>
+            <div class="user-toggle animated" id="connection_okay" style="display: block">
+                    <h4>You are connected</h4>
+             </div>
+        </div>
+
+        <!-- search option-->
+        <div class="icon">
+            <span class="fa fa-search" onclick="showInfo('search')"></span>
+            <!-- search bar-->
+            <div class="user-toggle" id="search">
+                   <form action="" method="post" class="form-search" id="form">
+                       <input type="search" name="search" id="searchData" placeholder="Search In Boopy">
+                       <button type="submit"><span class="fa fa-search"></span></button>
+                   </form>
+                   <div class="result" id="result">
+                       <div style="max-height: 200px;overflow-y:scroll" id="place">   
+                       </div>
+                   </div>
+             </div>
+        </div>
+
+        <div class="icon ">
+            <span class="fa fa-envelope-open-o"></span>
+            <span class="icon-show red">150</span>
+        </div>
+        <div class="icon">
+            <span class="fa fa-bell-o"></span>
+            <span class="icon-show green">45</span>
+        </div>
+        <div class="icon">
+            <span class="fa fa-envelope-o"></span>
+            <span class="icon-show red">45</span>
+        </div>
+    </div>
+</div>

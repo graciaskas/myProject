@@ -1,0 +1,48 @@
+<div class="modal " id="modal">
+    <div class="modashow animated-to">
+        <div class="head-data">
+            <h4>Add a candidate</h4>
+            <span class="fa fa-close close" id="close" onclick="hideElement('modal')"></span>
+        </div>
+        <div class="modalBody">
+           <form action="/candidate/push" method="post" class="custom-form" id="form">
+               <div class="inputform">
+                   <span class="fa fa-user"></span>
+                   <input type="text" name="first" id="first"  placeholder="first name" required>
+               </div>
+               <div class="inputform">
+                    <span class="fa fa-user"></span>
+                    <input type="text" name="last" id="last" placeholder="lastname" required>
+                </div>
+                <div class="inputform">
+                        <span class="fa fa-venus"></span>
+                        <select name="gender" id="">
+                            <option >male</option>
+                            <option>female</option>
+                        </select>
+                </div>
+                <div class="inputform">
+                    <span class="fa fa-calendar"></span>
+                    <input type="date" name="birthday" id="" required>
+                </div>
+                <div class="inputform">
+                        <span class="fa fa-user"></span>
+                        <input type="text" name="nationality" id="nationality" placeholder="nationaliny" required>
+                    </div>
+                    <div class="inputform">
+                         <span class="fa fa-phone"></span>
+                         <input type="number" name="phone" id="phone" placeholder="phone number" required>
+                     </div>
+                     <div class="inputform">
+                             <span class="fa fa-address-card"></span>
+                             <input type="text" name="address" id="address" placeholder="address" required>
+                         </div>
+                <div class="inputform">
+                    <span class="fa fa-align-right"></span>
+                    <input type="text" name="maritalState" id="state" placeholder="marital state" required>
+                </div>
+                <input type="submit"  value="register" class="submit bg-blue">
+           </form>
+        </div>
+    </div>
+</div>
